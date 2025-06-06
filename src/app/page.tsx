@@ -1,37 +1,64 @@
 "use client";
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Lottie from 'lottie-react';
-import animationData from '../../public/inge-intro.json'
 
 export default function HomePage() {
-
-  const [showPrompt, setShowPrompt] = useState(false);
+  const router = useRouter();
+  const [animationData, setAnimationData] = useState<any>(null);
+  const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {
-    const timer = setTimeout(() => setShowPrompt(true), 5000);
+    (async () => {
+      try {
+        const res = await fetch('/inge-intro.json');
+        const json = await res.json();
+        setAnimationData(json);
+      } catch (err) {
+        console.error('Lottie JSON load failed: ', err);
+      }
+    })()
+  }, []);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowButton(true), 5000);
     return () => clearTimeout(timer);
   }, []);
 
   return (
-    <div className='min-h-screen bg-gray-400 px-8 py-16 font-sans box-border flex flex-col items-center'>
-      <div className='w-full max-w-md bg-gray-200 rounded-lg shadow-md p-8 mb-8 text-center'>
+    <div className='flex flex-col items-center justify-center min-h-screen bg-gray-400 px-8 py-16 font-sans box-border '>
+      <div className='w-full max-w-md bg-gray-200 rounded-lg shadow-md p-8 text-center'>
         {/*---LottieFiles Animation (Inge Intro) */}
-        <div className='w-full mb-6'>
-          <Lottie
-            animationData={animationData}
-            loop={true}
-            autoplay={true}
-            className='w-full h-auto'
-          />
-        </div>
+        {animationData ? (
 
-        <h1 className='font-dancing text-5xl font-bold text-gray-900 mb-2 leading-tight'>Hi, I&rsquo;m <span className='text-red-900'>Inge</span>👋</h1>
-        <p className='text-xl text-gray-600 leading-relaxed'>I&apos;m your Kummerkastentante.<br /> I can help you as a couple navigate differences of personalities and provide tips for your relationship.</p>
-      </div>
-      <div className={`flex flex-col items-center space-y-1 transition-opacity duration-500 ${showPrompt ? 'opacity-100' : 'opacity-0'}`}>
-        <p className='text-base text-gray-500'>👇 Scroll down to tell me more about you guys 👇</p>
-        <div className='text-3xl text-gray-300 animate-bounce'>↓</div>
+          <div className='w-full mb-6 rounded-md overflow-hidden'>
+            <Lottie
+              animationData={animationData}
+              loop={true}
+              autoplay={true}
+              className='w-full h-auto'
+            />
+          </div>
+        ) : (
+          <div className="w-full mb-6 h-48 bg-gray-100 rounded-md flex items-center justify-center">
+            <span className="text-gray-400">Loading animation…</span>
+          </div>
+        )}
+
+        <h1 className='text-5xl font-bold text-gray-900 mb-2 leading-tight [font-family:Dancing_Script]'>
+          Hi, I&rsquo;m <span className='text-red-900'>Inge</span>👋</h1>
+        <p className='text-xl text-gray-600 leading-relaxed'>
+          I&apos;m your Kummerkastentante.<br />
+          I can help you as a couple navigate differences of personalities and provide tips for your relationship.
+        </p>
+        {showButton && (
+          <button
+            onClick={() => router.push('/enter')}
+            className='mt-8 w-full bg-gray-600 hover:bg-gray-700 text-white text-lg font-semibold py-3 rounded-md transition-colors cursor-pointer'
+          > Tell me more
+          </button>
+        )}
       </div>
     </div>
   );
