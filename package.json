@@ -9,8 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@langchain/core": "^0.3.57",
+    "@langchain/openai": "^0.5.12",
+    "dotenv": "^16.5.0",
     "lottie-react": "^2.4.1",
     "next": "15.3.3",
+    "openai": "^5.1.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },

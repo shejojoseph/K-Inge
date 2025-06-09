@@ -1,9 +1,9 @@
 export type Traits = {
-  openness: number;
-  conscientiousness: number;
-  extraversion: number;
-  agreeableness: number;
-  neuroticism: number;
+  curious: number;
+  organized: number;
+  outgoing: number;
+  friendly: number;
+  anxious: number;
 };
 
 export type Lifestyle = {
@@ -25,3 +25,5 @@ export interface PersonData {
   traits: Traits;
   lifestyle: Lifestyle;
 }
+
+export type Msg = { role: 'user' | 'assistant'; content: string };

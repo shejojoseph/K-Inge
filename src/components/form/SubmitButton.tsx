@@ -6,7 +6,7 @@ interface SubmitButtonProps {
   label?: string,
 }
 
-export default function SubmitButton({ label = "Calculate Compatibility" }: SubmitButtonProps) {
+export default function SubmitButton({ label = "Open chat" }: SubmitButtonProps) {
   return (
     <button
       type="submit"
@@ -16,7 +16,7 @@ export default function SubmitButton({ label = "Calculate Compatibility" }: Subm
         bg-gray-600 hover:bg-gray-700 text-white
         text-lg font-semibold
         px-8 py-3 rounded-full shadow-md
-        transision-colors"
+        transition-colors"
     >
       {label}
     </button>

@@ -15,9 +15,9 @@ export default function Navbar() {
             <Image
               src='/logo.svg'
               alt='Kummerkastentante Inge Logo'
-              width={100}
-              height={40}
-              className='mr-2'
+              width={203}
+              height={75}
+              className='h-10 w-auto'
             />
           </div>
         </Link>

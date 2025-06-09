@@ -4,28 +4,76 @@ import { useState, FormEvent } from "react";
 import PersonForm from "@/components/persons/PersonForm";
 import SubmitButton from "@/components/form/SubmitButton";
 import type { PersonData, Traits, Lifestyle } from "@/types";
+import { useRouter } from "next/navigation"
 
 
 const defaultTraits: Traits = {
-  openness: 3,
-  conscientiousness: 3,
-  extraversion: 3,
-  agreeableness: 3,
-  neuroticism: 3,
+  curious: 0,
+  organized: 0,
+  outgoing: 0,
+  friendly: 0,
+  anxious: 0,
 };
 
 const defaultLifestyle: Lifestyle = {
-  relocate: 3,
-  finance: 3,
-  children: 3,
-  travel: 3,
-  chores: 3,
-  workLifeBalance: 3,
-  personalSpace: 3,
-  fitness: 3,
+  relocate: 0,
+  finance: 0,
+  children: 0,
+  travel: 0,
+  chores: 0,
+  workLifeBalance: 0,
+  personalSpace: 0,
+  fitness: 0,
 };
 
+const samplePersonA: PersonData = {
+  name: "Bob",
+  gender: "male",
+  pronouns: "he/him",
+  nationality: "Australian",
+  traits: {
+    curious: 2,
+    organized: -1,
+    outgoing: 4,
+    friendly: 0,
+    anxious: -3
+  },
+  lifestyle: {
+    relocate: 1,
+    finance: -2,
+    children: 0,
+    travel: 3,
+    chores: 5,
+    workLifeBalance: 4,
+    personalSpace: -1,
+    fitness: 2,
+  },
+}
+const samplePersonB: PersonData = {
+  name: "Alice",
+  gender: 'female',
+  pronouns: 'she/her',
+  nationality: 'Russian',
+  traits: {
+    curious: 5,
+    organized: 3,
+    outgoing: -2,
+    friendly: 4,
+    anxious: 1,
+  },
+  lifestyle: {
+    relocate: -4,
+    finance: 2,
+    children: 5,
+    travel: -1,
+    chores: 0,
+    workLifeBalance: 5,
+    personalSpace: 3,
+    fitness: -2,
+  }
+}
 export default function EnterPage() {
+  const router = useRouter();
   const [personA, setPersonA] = useState<PersonData>({
     name: '',
     gender: '',
@@ -43,8 +91,13 @@ export default function EnterPage() {
     lifestyle: { ...defaultLifestyle },
   });
 
+  const fillSample = () => {
+    setPersonA(samplePersonA);
+    setPersonB(samplePersonB);
+  }
+
   // Text field entries for name, gender, pronouns, country
-  const handleTextChangeA = (field: keyof Omit<PersonData, 'traits' | 'lifestyle'>, val: string) => {
+  const handleTextChangeA = (field: keyof Omit<PersonData, 'trait' | 'lifestyle'>, val: string) => {
     setPersonA((prev) => ({ ...prev, [field]: val }));
   };
 
@@ -82,15 +135,28 @@ export default function EnterPage() {
     e.preventDefault();
     console.log('Person A: ', personA);
     console.log('Person B: ', personB);
-    alert('Data logged to console. Next: call API to compute compatibility.');
+    const payload = encodeURIComponent(
+      JSON.stringify({ personA, personB })
+    );
+    router.push(`/chat?data=${payload}`);
   };
 
   return (
-    <div className='min-h-screen bg-gray-50 px-4 py-12'>
-      <div className='max-w-4xl mx-auto bg-white rounded-lg shadow-md p-8'>
-        <h1 className='text-3xl font-bold text-gray-900 mb-6 text-center'>
-          Enter Couple Details
-        </h1>
+    <div className="min-h-screen bg-gray-50 px-4 py-12">
+      <div className="max-w-4xl mx-auto bg-white rounded-lg shadow-md p-8 space-y-6">
+        {/* Header with title and sample button */}
+        <div className="flex items-center justify-between">
+          <h1 className="text-3xl font-bold text-gray-900">
+            Enter Couple Details
+          </h1>
+          <button
+            type="button"
+            onClick={fillSample}
+            className="inline-flex items-center bg-green-600 hover:bg-green-700 text-white font-semibold px-6 py-2 rounded-md transition-colors"
+          >
+            Sample
+          </button>
+        </div>
         <form onSubmit={handleSubmit} className="space-y-12">
           {/* Person A */}
           <PersonForm
@@ -116,7 +182,7 @@ export default function EnterPage() {
             <SubmitButton />
           </div>
         </form>
-      </div>
-    </div>
+      </div >
+    </div >
   );
 }

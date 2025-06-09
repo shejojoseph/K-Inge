@@ -16,7 +16,7 @@ export default function SliderInput({
   id,
   label,
   value,
-  min = 1,
+  min = -5,
   max = 5,
   step = 1,
   onChange,

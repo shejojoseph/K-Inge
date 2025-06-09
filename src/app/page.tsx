@@ -6,7 +6,7 @@ import Lottie from 'lottie-react';
 
 export default function HomePage() {
   const router = useRouter();
-  const [animationData, setAnimationData] = useState<any>(null);
+  const [animationData, setAnimationData] = useState<Record<string, unknown> | null>(null);
   const [showButton, setShowButton] = useState(false);
 
   useEffect(() => {

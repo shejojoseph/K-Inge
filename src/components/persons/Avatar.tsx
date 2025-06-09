@@ -9,7 +9,7 @@ interface AvatarProps {
 }
 
 export default function Avatar({ gender, size = 128 }: AvatarProps) {
-  const [animationData, setAnimationData] = useState<any>(null);
+  const [animationData, setAnimationData] = useState<Record<string, unknown> | null>(null);
 
   const url = (
     gender === "male" ? '/male.json'

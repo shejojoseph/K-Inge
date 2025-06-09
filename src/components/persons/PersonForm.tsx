@@ -11,7 +11,7 @@ interface PersonFormProps {
   label: 'A' | 'B';
   data: PersonData;
   onTextChange: (field: keyof Omit<PersonData, 'traits' | 'lifestyle'>, value: string) => void;
-  onTraitChange: (triatKey: keyof Traits, value: number) => void;
+  onTraitChange: (traitKey: keyof Traits, value: number) => void;
   onLifestyleChange: (lifeKey: keyof Lifestyle, value: number) => void;
 }
 
@@ -76,17 +76,17 @@ export default function PersonForm({
           />
 
           <TextInput
-            id={`${label}-country`}
+            id={`${label}-nationality`}
             label='Nationality'
-            value={data.country}
-            placeholder="Country"
+            value={data.nationality}
+            placeholder="Nationality"
             required
-            onChange={(val) => onTextChange('country', val)}
+            onChange={(val) => onTextChange('nationality', val)}
           />
         </div>
         {/* ── COLUMN 2: Big Five Traits ─────────────────────────────── */}
         <div className="space-y-4">
-          <p className="text-lg font-medium text-gray-700">User-Traits (On scale of 1-5) </p>
+          <p className="text-lg font-medium text-gray-700">How ... are you? </p>
           {(
             Object.keys(data.traits) as Array<keyof Traits>
           ).map((traitKey) => (
@@ -101,7 +101,7 @@ export default function PersonForm({
         </div>
         {/* ── COLUMN 3: Lifestyle Preferences ───────────────────────── */}
         <div className="space-y-4">
-          <p className="text-lg font-medium text-gray-700">Lifestyle (willingness on a scale of 1-5)</p>
+          <p className="text-lg font-medium text-gray-700">How willing are you to...</p>
           {(
             Object.keys(data.lifestyle) as Array<keyof Lifestyle>
           ).map((lifeKey) => (
