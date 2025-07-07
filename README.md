@@ -1,6 +1,6 @@
 # K-Inge
 <p align="center">
-  <img src="images/logo-readme-1.png" />
+  <img src="public/logo.svg" />
 </p>
 
 ## Getting Started
