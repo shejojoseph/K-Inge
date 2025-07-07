@@ -12,7 +12,7 @@ Prerequisites
 
 1. Clone & Install
 
-git clone https://github.com/your-org/k-inge.git
+git clone https://github.com/shejojoseph/k-inge.git
 cd k-inge
 npm install
 
