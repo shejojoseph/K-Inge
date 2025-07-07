@@ -2,6 +2,13 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 You can find the project walkthrough at https://youtu.be/X6PwvACUxk0
 
+![image](https://github.com/user-attachments/assets/05157a0e-d73d-4a45-90cf-10eadbae7fe7)
+![image](https://github.com/user-attachments/assets/2d5e4b34-650a-4dc6-9627-a932fe32f0f9)
+![image](https://github.com/user-attachments/assets/ca7e752c-7f9f-45c7-906a-a7a3ff982bc6)
+
+
+
+
 ## Getting Started
 Prerequisites
 - Node.js ≥ 18
