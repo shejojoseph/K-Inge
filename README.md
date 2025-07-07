@@ -3,6 +3,8 @@
   <img src="public/logo.svg" />
 </p>
 
+Unlock a deeper understanding of your relationship with K-Inge. Inge is an AI-powered chat-agent that uses personality insights (from the Big Five model) and your shared preferences as a couple to generate actionable advice, helping you and your partner grow together.
+
 ## Getting Started
 Prerequisites
 - Node.js ≥ 18
